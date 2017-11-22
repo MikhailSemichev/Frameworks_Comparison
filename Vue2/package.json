@@ -1,0 +1,102 @@
+{
+  "name": "app",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --config config/webpack.config.js --content-base ./",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config config/webpack.config.js"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.2",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "cross-env": "^5.1.1",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "vue-eslint-parser": "^1.0.0",
+    "vue-loader": "^13.5.0",
+    "vue-template-compiler": "^2.5.8",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4",
+    "webpack-merge": "^4.1.1"
+  },
+  "dependencies": {
+    "vue": "^2.5.8",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "last 2 versions",
+              "ie >= 9"
+            ]
+          }
+        }
+      ],
+      [
+        "stage-2"
+      ]
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": false,
+      "amd": true
+    },
+    "globals": {
+      "process": true
+    },
+    "extends": [
+      "prettier",
+      "standard"
+    ],
+    "rules": {
+      "indent": [
+        "error",
+        4,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "space-before-function-paren": [
+        "error",
+        {
+          "anonymous": "never",
+          "named": "never",
+          "asyncArrow": "always"
+        }
+      ]
+    },
+    "plugins": [
+      "vue",
+      "html"
+    ],
+    "settings": {
+      "html/html-extensions": [
+        ".vue",
+        ".html"
+      ],
+      "html/indent": "+4"
+    }
+  }
+}
