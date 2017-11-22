@@ -1,0 +1,16 @@
+<h1>
+  {{title}}
+</h1>
+<a routerLink="/">Same Module</a>
+<a routerLink="/bundled">Another Module</a>
+<a routerLink="/lazy">Lazy Module</a>
+
+<router-outlet></router-outlet>
+
+
+<div>
+  <div *ngFor="let item of items" class='todo-item'>
+      <input type='text' value={{item.name}}/>
+      <input type='checkbox' value={{item.isDone}}/>
+  </div>
+</div>
