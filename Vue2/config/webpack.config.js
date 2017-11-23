@@ -28,14 +28,14 @@ const envConfig = {
 
 let options = {
     context: resolvePath(envConfig.context),
-    entry: {
-        app: resolvePath(envConfig.dirs.sources, 'index.js'),
-        vendor: Object.keys(pck.dependencies)
-    },
+    entry: [
+        resolvePath(envConfig.dirs.sources, 'index.js')
+    ],
     output: {
         path: resolvePath(envConfig.dirs.dist),
         publicPath: envConfig.dirs.public,
-        filename: `${envConfig.dirs.scripts}[name].js`
+        filename: `${envConfig.dirs.scripts}[name].[hash:8].js`,
+        chunkFilename: `${envConfig.dirs.scripts}[name].[hash:8].chunk.js`
     },
     plugins: [
         new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'template.html') }),
@@ -45,9 +45,7 @@ let options = {
         new webpack.DefinePlugin({
             'process.env': { NODE_ENV: `'${process.env.NODE_ENV}'` }
         }),
-        new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /ru/),
-        new webpack.optimize.CommonsChunkPlugin('vendor'),
-        new ExtractTextPlugin(`${envConfig.dirs.styles}[name].css`)
+        new ExtractTextPlugin(`${envConfig.dirs.styles}[name].[contenthash:8].css`)
     ],
     module: {
         rules: [

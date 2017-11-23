@@ -2,7 +2,7 @@
   "name": "app",
   "version": "0.0.1",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --config config/webpack.config.js --content-base ./",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --hot --config config/webpack.config.js --content-base ./",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config config/webpack.config.js"
   },
   "devDependencies": {
