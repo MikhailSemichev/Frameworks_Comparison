@@ -6,12 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { SimpleRouteComponent } from './simple-route/simple-route.component';
-
+import { ToDoComponent } from './to-do/to-do.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SimpleRouteComponent
+    SimpleRouteComponent,
+    ToDoComponent
   ],
   imports: [
     BrowserModule,
