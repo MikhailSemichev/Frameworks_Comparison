@@ -31,6 +31,11 @@ export class ToDoComponent {
     this.model.isDone = !this.model.isDone;
     this.stateChanged.emit(this.model);
   }
+
+  public updateModel(e) {
+    this.model.name = e.target.value;
+    this.stateChanged.emit(this.model);
+  }
 }
 
 

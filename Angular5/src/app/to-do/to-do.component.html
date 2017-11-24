@@ -1,5 +1,6 @@
 <div class="todo-item">
-  <input type='text' [(ngModel)]="model.name"/>
+  <!--<input type='text' [(ngModel)]="model.name"/>-->
+  <input type='text' [value]="model.name" (change)="updateModel($event)"/>
   <input type='checkbox' [checked]="model.isDone" (click)="changeState()"/>
 </div>
 
