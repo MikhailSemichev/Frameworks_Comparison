@@ -5,7 +5,7 @@ function createFakeData(count) {
         result.push({
             id: i + 1,
             name: `Todo Item ${i + 1}`,
-            checked: Math.random() < 0.3
+            checked: i % 3 === 0
         });
     }
 
@@ -24,13 +24,25 @@ export default {
             return state.todoItems.length;
         },
         doneCount(state) {
-            return state.todoItems.reduce((count, item) => count + (item.checked ? 1 : 0), 0);
+            let count = 0;
+            for (const item of state.todoItems) {
+                if (item.checked) { count += 1; }
+            }
+            return count;
         },
         undoneCount(state) {
-            return state.todoItems.reduce((count, item) => count + (item.checked ? 0 : 1), 0);
+            let count = 0;
+            for (const item of state.todoItems) {
+                if (!item.checked) { count += 1; }
+            }
+            return count;
         },
         newId(state) {
-            return state.todoItems.reduce((maxId, item) => maxId === null || maxId < item.id ? item.id : maxId, null) + 1;
+            let maxId = null;
+            for (const item of state.todoItems) {
+                if (maxId < item.id || maxId === null) { maxId += item.id; }
+            }
+            return maxId + 1;
         },
         getIndexById: (state) => (id) => {
             for (let index = 0; index < state.todoItems.length; index++) {
@@ -49,6 +61,15 @@ export default {
     mutations: {
         setTodoItems(state, todoItems) {
             state.todoItems = todoItems;
+        },
+        addNew(state, { item }) {
+            state.todoItems.push(item);
+        },
+        remove(state, { index }) {
+            state.todoItems.splice(index, 1);
+        },
+        update(state, { index, item }) {
+            state.todoItems.splice(index, 1, { ...state.todoItems[index], ...item });
         }
     },
     actions: {
@@ -56,26 +77,21 @@ export default {
             store.commit('setTodoItems', createFakeData(5000));
         },
         addNew(store, item) {
-            const todos = store.state.todoItems.concat([
-                { ...item, id: store.getters.newId }
-            ]);
-            store.commit('setTodoItems', todos);
+            item = { ...item, id: store.getters.newId };
+            store.commit('addNew', { item });
         },
         remove(store, item) {
             const index = store.getters.getIndexById(item.id)
             if (index === null) { return; }
 
-            const todos = store.state.todoItems.slice();
-            todos.splice(index, 1);
-            store.commit('setTodoItems', todos);
+            store.commit('remove', { index });
         },
         update(store, item) {
             const index = store.getters.getIndexById(item.id)
             if (index === null) { return; }
 
-            const todos = store.state.todoItems.slice();
-            todos.splice(index, 1, { ...store.state.todoItems[index], ...item });
-            store.commit('setTodoItems', todos);
+            item = { ...store.state.todoItems[index], ...item };
+            store.commit('update', { index, item });
         }
     }
 };
