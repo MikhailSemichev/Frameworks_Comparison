@@ -2,19 +2,16 @@
     <div class="app">
         <CHeader />
         <router-view />
-        <CTodo />
     </div>
 </template>
 
 <script>
     import CHeader from '@/components/Header.vue';
-    import CTodo from '@/components/Todo/index.vue';
 
     export default {
         name: 'app',
         components: {
-            CHeader,
-            CTodo
+            CHeader
         }
     };
 </script>
