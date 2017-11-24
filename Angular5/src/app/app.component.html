@@ -10,7 +10,6 @@
 
 <div>
   <div *ngFor="let item of items" class='todo-item'>
-      <input type='text' value={{item.name}}/>
-      <input type='checkbox' value={{item.isDone}}/>
+      <app-to-do [model]="item" (stateChanged)="processToDo($event)"></app-to-do>
   </div>
 </div>
