@@ -9,7 +9,5 @@
 
 
 <div>
-  <div *ngFor="let item of items" class='todo-item'>
-      <app-to-do [model]="item" (stateChanged)="processToDo($event)"></app-to-do>
-  </div>
+  <app-to-do *ngFor="let item of items" [model]="item"></app-to-do>
 </div>

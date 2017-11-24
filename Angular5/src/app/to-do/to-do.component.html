@@ -1,2 +1,5 @@
-<input type='text' [(ngModel)]="model.name"/>
-<input type='checkbox' value={{model.isDone}} (click)="changeState()"/>
+<div class="todo-item">
+  <input type='text' [(ngModel)]="model.name"/>
+  <input type='checkbox' [checked]="model.isDone" (click)="changeState()"/>
+</div>
+
