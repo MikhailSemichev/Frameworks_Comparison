@@ -7,7 +7,6 @@
                 :name="item.name"
                 :checked="item.checked"
                 v-for="item of todoItems"
-                @toggle="toggleItem"
             />
         </template>
     </div>
